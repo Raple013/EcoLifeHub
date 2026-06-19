@@ -84,7 +84,266 @@ run2 = subtitle.add_run('Dokumentasi Fitur - Semua Hak Cipta')
 run2.font.size = Pt(10)
 run2.font.color.rgb = RGBColor(0x7A, 0x8A, 0x7A)
 
+# ============================ 2. LATAR BELAKANG MASALAH ============================
 doc.add_page_break()
+add_heading_custom('BAB II: LATAR BELAKANG MASALAH', level=1)
+
+doc.add_paragraph(
+    'Perkembangan gaya hidup modern telah membawa dampak signifikan terhadap pola makan dan aktivitas fisik masyarakat. '
+    'Menurut data World Health Organization (WHO), prevalensi obesitas global telah meningkat hampir tiga kali lipat sejak tahun 1975. '
+    'Di Indonesia, Riset Kesehatan Dasar (Riskesdas) menunjukkan bahwa lebih dari 35% populasi dewasa mengalami kelebihan berat badan atau obesitas. '
+    'Fenomena ini diperparah oleh kurangnya kesadaran masyarakat akan pentingnya gizi seimbang dan gaya hidup aktif.'
+)
+doc.add_paragraph(
+    'Selain masalah kesehatan, krisis lingkungan juga menjadi tantangan global yang mendesak. '
+    'Berdasarkan laporan United Nations, perubahan iklim, degradasi lingkungan, dan hilangnya keanekaragaman hayati semakin mengancam keberlanjutan kehidupan di bumi. '
+    'Sustainable Development Goals (SDGs) yang dicanangkan oleh PBB menjadi kerangka kerja global untuk mengatasi tantangan-tantangan tersebut. '
+    'Namun demikian, tingkat literasi masyarakat terhadap SDGs masih rendah, terutama di kalangan generasi muda.'
+)
+doc.add_paragraph(
+    'Di era digital saat ini, teknologi informasi memiliki potensi besar untuk menjadi solusi dalam meningkatkan kesadaran masyarakat '
+    'terhadap kesehatan pribadi dan isu-isu keberlanjutan. Aplikasi mobile dan web telah banyak digunakan untuk tracking kesehatan, '
+    'namun sebagian besar masih bersifat terpisah-pisah dan belum mengintegrasikan aspek nutrisi, aktivitas fisik, edukasi, dan SDGs '
+    'dalam satu platform yang kohesif.'
+)
+doc.add_paragraph(
+    'Berdasarkan permasalahan di atas, pengembangan EcoLife Hub sebagai platform sustainable living terintegrasi menjadi relevan. '
+    'Platform ini dirancang untuk membantu pengguna dalam mencatat asupan nutrisi dan aktivitas fisik harian, meningkatkan pengetahuan '
+    'tentang SDGs melalui quiz interaktif dan artikel edukasi, serta membangun komunitas peduli lingkungan melalui forum diskusi. '
+    'Dengan pendekatan yang komprehensif dan user-friendly, EcoLife Hub bertujuan untuk menjadi katalis perubahan gaya hidup '
+    'masyarakat menuju kehidupan yang lebih sehat dan berkelanjutan.'
+)
+
+# ============================ 3. KETERKAITAN DENGAN SDG's ============================
+doc.add_page_break()
+add_heading_custom('BAB III: KETERKAITAN DENGAN SDG\'s', level=1)
+
+doc.add_paragraph(
+    'EcoLife Hub dikembangkan dengan mengacu pada beberapa Sustainable Development Goals (SDGs) yang telah ditetapkan oleh '
+    'Perserikatan Bangsa-Bangsa (PBB). Berikut adalah keterkaitan fitur-fitur dalam EcoLife Hub dengan masing-masing SDGs:'
+)
+
+add_section_heading('SDG 2: Zero Hunger (Mengakhiri Kelaparan)')
+doc.add_paragraph(
+    'EcoLife Hub berkontribusi pada pencapaian SDG 2 melalui fitur nutrisi dan food tracking yang mendorong pola makan sehat '
+    'dan seimbang. Aplikasi membantu pengguna memahami kebutuhan gizi harian melalui pencatatan kalori, protein, karbohidrat, '
+    'gula, dan lemak. Dengan target nutrisi harian yang terukur (2000 kcal, 60g protein, 250g carbs, 50g sugar, 65g fat), '
+    'pengguna dapat memonitor asupan makanan dan membuat keputusan yang lebih baik terkait konsumsi pangan. '
+    'Fitur scan barcode dan integrasi OpenFoodFacts serta USDA API juga memudahkan pengguna untuk mendapatkan informasi gizi '
+    'dari makanan yang dikonsumsi sehari-hari.'
+)
+
+add_section_heading('SDG 3: Good Health and Well-being (Kehidupan Sehat dan Sejahtera)')
+doc.add_paragraph(
+    'SDG 3 merupakan inti dari pengembangan EcoLife Hub. Platform ini menyediakan berbagai fitur yang mendukung kesehatan '
+    'dan kesejahteraan pengguna:'
+)
+add_bullet('Dashboard kesehatan yang menampilkan ringkasan nutrisi harian, aktivitas fisik, dan BMI (Body Mass Index).')
+add_bullet('Fitur aktivitas/olahraga untuk mencatat durasi, jenis, intensitas, dan kalori terbakar dari berbagai kegiatan fisik.')
+add_bullet('Daily report yang menggabungkan data nutrisi dan aktivitas dalam laporan harian yang komprehensif.')
+add_bullet('Weather widget yang membantu pengguna merencanakan aktivitas berdasarkan kondisi cuaca di lokasi mereka.')
+add_bullet('Daily tips yang memberikan informasi kesehatan dan motivasi setiap hari.')
+
+add_section_heading('SDG 4: Quality Education (Pendidikan Berkualitas)')
+doc.add_paragraph(
+    'EcoLife Hub berkontribusi pada SDG 4 melalui fitur edukasi yang komprehensif:'
+)
+add_bullet('Artikel edukasi tentang kesehatan, nutrisi, dan lingkungan yang tersedia dalam dua bahasa (Indonesia dan Inggris).')
+add_bullet('Quiz interaktif tentang SDGs dengan 50 pertanyaan yang tersebar di 5 topik berbeda.')
+add_bullet('Halaman detail SDG yang menjelaskan masing-masing 17 tujuan pembangunan berkelanjutan.')
+add_bullet('Forum diskusi yang memfasilitasi pertukaran pengetahuan antar pengguna.')
+
+add_section_heading('SDG 12: Responsible Consumption and Production (Konsumsi dan Produksi yang Bertanggung Jawab)')
+doc.add_paragraph(
+    'Melalui fitur food tracking, EcoLife Hub mendorong pengguna untuk lebih sadar terhadap pola konsumsi makanan mereka. '
+    'Dengan mencatat dan memonitor asupan harian, pengguna dapat mengidentifikasi kebiasaan konsumsi yang tidak sehat '
+    'dan secara bertahap mengadopsi pola makan yang lebih bertanggung jawab. Fitur quiz dan artikel edukasi juga memberikan '
+    'pemahaman tentang pentingnya konsumsi berkelanjutan bagi lingkungan.'
+)
+
+add_section_heading('SDG 13: Climate Action (Penanganan Perubahan Iklim)')
+doc.add_paragraph(
+    'EcoLife Hub meningkatkan kesadaran pengguna terhadap isu perubahan iklim melalui konten edukasi yang relevan. '
+    'Artikel-artikel tentang lingkungan dan keberlanjutan membantu pengguna memahami dampak aktivitas manusia terhadap '
+    'perubahan iklim serta langkah-langkah yang dapat diambil untuk berkontribusi dalam mitigasi. '
+    'Forum diskusi juga menjadi wadah bagi pengguna untuk berbagi ide dan praktik terbaik dalam aksi iklim sehari-hari.'
+)
+
+add_section_heading('SDG 17: Partnerships for the Goals (Kemitraan untuk Mencapai Tujuan)')
+doc.add_paragraph(
+    'EcoLife Hub dibangun dengan prinsip kolaborasi dan kemitraan. Platform ini mengintegrasikan berbagai layanan eksternal '
+    'seperti OpenFoodFacts API, USDA API, Google Gemini AI, dan OpenWeatherMap API untuk memberikan layanan terbaik kepada pengguna. '
+    'Selain itu, forum diskusi menjadi sarana untuk membangun kemitraan dan kolaborasi antar pengguna dalam mencapai tujuan '
+    'keberlanjutan bersama.'
+)
+
+# ============================ 4. 7 FASE PENGEMBANGAN SOFTWARE ============================
+doc.add_page_break()
+add_heading_custom('BAB IV: 7 FASE PENGEMBANGAN SOFTWARE', level=1)
+
+doc.add_paragraph(
+    'Pengembangan EcoLife Hub mengikuti metodologi Software Development Life Cycle (SDLC) yang terdiri dari 7 fase. '
+    'Metodologi ini dipilih untuk memastikan pengembangan berjalan sistematis, terstruktur, dan menghasilkan aplikasi '
+    'yang berkualitas sesuai dengan kebutuhan pengguna.'
+)
+
+add_section_heading('Fase 1: Analisis (Analysis)')
+doc.add_paragraph(
+    'Fase analisis merupakan tahap awal untuk mengidentifikasi kebutuhan dan permasalahan yang akan diselesaikan. '
+    'Kegiatan yang dilakukan meliputi:'
+)
+add_bullet('Studi literatur tentang masalah gizi, kesehatan, dan kesadaran SDGs di masyarakat.')
+add_bullet('Riset aplikasi sejenis untuk mengidentifikasi celah dan peluang pengembangan.')
+add_bullet('Analisis kebutuhan pengguna melalui identifikasi target audience, yaitu individu yang peduli terhadap kesehatan dan lingkungan.')
+add_bullet('Penentuan ruang lingkup proyek dan fitur-fitur prioritas yang akan dikembangkan.')
+add_bullet('Pemilihan teknologi: Laravel 11 (backend), Tailwind CSS + Alpine.js (frontend), MySQL (database).')
+
+add_section_heading('Fase 2: Perancangan (Design)')
+doc.add_paragraph(
+    'Tahap perancangan mencakup desain arsitektur sistem, database, dan antarmuka pengguna:'
+)
+add_bullet('Arsitektur MVC (Model-View-Controller) Laravel dengan pola routing RESTful.')
+add_bullet('Perancangan database: 17 tabel yang mencakup users, articles, nutrition_logs, activity_logs, daily_histories, quiz_questions, discussions, comments, achievements, dan SDGs.')
+add_bullet('Desain UI/UX dengan tema warm botanical editorial: palet warna forest green, gold, cream, dan sage. Tipografi Playfair Display (serif) dan DM Sans (sans-serif).')
+add_bullet('Wireframe dan mockup untuk halaman utama: landing page, dashboard user, admin panel, dan halaman-halaman fitur.')
+add_bullet('Entity Relationship Diagram (ERD) untuk memvisualisasikan hubungan antar tabel database.')
+
+add_section_heading('Fase 3: Implementasi / Pengembangan (Development)')
+doc.add_paragraph(
+    'Fase pengembangan adalah implementasi kode berdasarkan desain yang telah dibuat:'
+)
+add_bullet('Setup lingkungan pengembangan: Laravel 11, Vite, Node.js, MySQL.')
+add_bullet('Pembuatan migration dan seeder database untuk struktur dan data awal.')
+add_bullet('Pengembangan fitur autentikasi: register, login, logout, verifikasi email, reset password.')
+add_bullet('Pengembangan fitur utama: dashboard, nutrition tracking (scan + manual), activity logging, daily report, history.')
+add_bullet('Pengembangan fitur edukasi: articles (CRUD + komentar), quiz SDG interaktif, SDG detail pages.')
+add_bullet('Pengembangan fitur komunitas: forum diskusi (threads + replies), achievements system.')
+add_bullet('Pengembangan admin panel: dashboard admin, manage articles, users, comments, discussions, quiz questions, data overview.')
+add_bullet('Integrasi API eksternal: OpenFoodFacts, USDA, Google Gemini AI, OpenWeatherMap.')
+add_bullet('Implementasi sistem multi-bahasa (Indonesia dan Inggris) menggunakan Laravel localization.')
+add_bullet('Desain frontend dengan Tailwind CSS, Alpine.js, dan animasi kustom (fade-up, slide-down).')
+
+add_section_heading('Fase 4: Pengujian (Testing)')
+doc.add_paragraph(
+    'Pengujian dilakukan untuk memastikan aplikasi berfungsi dengan benar dan bebas dari bug:'
+)
+add_bullet('Unit Testing: Pengujian model, service, dan helper functions secara independen.')
+add_bullet('Feature Testing: Pengujian alur end-to-end untuk setiap fitur menggunakan PHPUnit. Mencakup 31+ test dengan 70+ assertions.')
+add_bullet('Manual Testing: Pengujian langsung oleh pengembang untuk memvalidasi UI/UX dan fungsionalitas.')
+add_bullet('Responsive Testing: Pengujian tampilan pada berbagai ukuran layar (desktop, tablet, mobile).')
+add_bullet('API Testing: Pengujian integrasi dengan layanan eksternal (OpenFoodFacts, USDA, Gemini, OpenWeatherMap).')
+
+add_section_heading('Fase 5: Deployment')
+doc.add_paragraph(
+    'Tahap deployment mencakup persiapan dan peluncuran aplikasi ke lingkungan production:'
+)
+add_bullet('Konfigurasi server production dengan PHP 8.x, MySQL, dan web server (Apache/Nginx).')
+add_bullet('Build asset menggunakan Vite untuk optimasi CSS dan JavaScript.')
+add_bullet('Migrasi database dan seeding data awal di lingkungan production.')
+add_bullet('Konfigurasi environment variables untuk API keys dan pengaturan aplikasi.')
+add_bullet('Setup SSL/HTTPS untuk keamanan koneksi.')
+add_bullet('Testing post-deployment untuk memastikan aplikasi berjalan dengan baik di production.')
+
+add_section_heading('Fase 6: Pemeliharaan (Maintenance)')
+doc.add_paragraph(
+    'Pemeliharaan dilakukan secara berkala untuk menjaga performa dan keamanan aplikasi:'
+)
+add_bullet('Pemantauan performa aplikasi dan database secara rutin.')
+add_bullet('Pembaruan konten artikel dan quiz questions oleh admin.')
+add_bullet('Penanganan bug dan issue yang dilaporkan oleh pengguna.')
+add_bullet('Pembaruan dependency dan library untuk keamanan dan kompatibilitas.')
+add_bullet('Backup database secara periodik.')
+add_bullet('Optimasi query database dan caching untuk meningkatkan performa.')
+
+add_section_heading('Fase 7: Evaluasi (Evaluation)')
+doc.add_paragraph(
+    'Fase evaluasi dilakukan untuk menilai keberhasilan aplikasi dan merencanakan pengembangan selanjutnya:'
+)
+add_bullet('Analisis feedback dari pengguna melalui forum diskusi dan interaksi langsung.')
+add_bullet('Evaluasi pencapaian tujuan: apakah aplikasi berhasil meningkatkan kesadaran gizi, aktivitas fisik, dan literasi SDGs.')
+add_bullet('Identifikasi area pengembangan: fitur-fitur baru yang dapat ditambahkan untuk meningkatkan value aplikasi.')
+add_bullet('Perencanaan rilis versi berikutnya berdasarkan prioritas pengembangan yang telah diidentifikasi.')
+
+# ============================ 5. HASIL DAN MANFAAT APLIKASI ============================
+doc.add_page_break()
+add_heading_custom('BAB V: HASIL DAN MANFAAT APLIKASI', level=1)
+
+add_section_heading('Hasil Pengembangan')
+doc.add_paragraph(
+    'EcoLife Hub berhasil dikembangkan sebagai platform sustainable living berbasis web yang memiliki fitur lengkap dan '
+    'telah melalui serangkaian pengujian. Berikut adalah hasil utama dari pengembangan aplikasi:'
+)
+add_bullet('Aplikasi web fungsional dengan arsitektur MVC Laravel 11 yang responsif dan memiliki 31+ test dengan 70+ assertions.')
+add_bullet('17 tabel database yang saling terintegrasi, mencakup seluruh entitas yang dibutuhkan untuk menjalankan fitur-fitur platform.')
+add_bullet('Sistem autentikasi lengkap dengan registrasi, login, verifikasi email, reset password, dan manajemen profil.')
+add_bullet('Fitur nutrition tracking dengan 3 metode input: scan barcode/label (menggunakan Gemini AI), manual input, dan riwayat pencarian.')
+add_bullet('Fitur activity logging dengan pencatatan durasi, jenis, intensitas, dan kalori terbakar.')
+add_bullet('Sistem daily report yang mengintegrasikan data nutrisi dan aktivitas dalam laporan harian.')
+add_bullet('50 soal quiz SDG interaktif dengan 5 topik dan sistem skor dinamis.')
+add_bullet('Platform artikel edukasi dengan CRUD penuh, filter kategori/bahasa, dan sistem komentar.')
+add_bullet('Forum diskusi dengan fitur thread, reply, kategori, pin, dan lock.')
+add_bullet('Sistem achievements 5 tier dengan Discord-style role tags yang ditampilkan di username.')
+add_bullet('Admin panel lengkap untuk manajemen konten dan pengguna, termasuk fitur block/unblock user.')
+add_bullet('Desain UI warm botanical editorial dengan grain overlay, animasi, dan tipografi yang konsisten.')
+add_bullet('Dokumentasi lengkap: ERD, use case diagram, dan daftar fitur.')
+
+add_section_heading('Manfaat Aplikasi')
+doc.add_paragraph(
+    'EcoLife Hub memberikan manfaat yang dapat dirasakan oleh berbagai pihak:'
+)
+
+add_sub_heading('Manfaat untuk Pengguna')
+add_bullet('Membantu memonitor asupan nutrisi harian dengan mudah melalui scan barcode atau input manual.')
+add_bullet('Mendorong gaya hidup aktif melalui pencatatan aktivitas fisik dan visualisasi progress harian.')
+add_bullet('Meningkatkan pengetahuan tentang SDGs dan isu keberlanjutan melalui quiz interaktif dan artikel edukasi.')
+add_bullet('Membangun komunitas peduli lingkungan melalui forum diskusi dan sistem achievements.')
+add_bullet('Menyediakan informasi cuaca yang membantu perencanaan aktivitas harian.')
+add_bullet('Memudahkan akses ke laporan kesehatan harian yang komprehensif.')
+
+add_sub_heading('Manfaat untuk Admin')
+add_bullet('Memudahkan pengelolaan seluruh konten platform melalui admin panel terpusat.')
+add_bullet('Menyediakan overview data aktivitas pengguna untuk monitoring dan evaluasi.')
+add_bullet('Fitur block/unblock user untuk menjaga keamanan dan kenyamanan komunitas.')
+add_bullet('Manajemen quiz questions dan artikel secara dinamis tanpa perlu mengubah kode.')
+
+add_sub_heading('Manfaat untuk Lingkungan dan Masyarakat')
+add_bullet('Meningkatkan kesadaran masyarakat tentang pentingnya gaya hidup berkelanjutan.')
+add_bullet('Mengedukasi tentang SDGs dan peran individu dalam pencapaian tujuan global.')
+add_bullet('Mendorong konsumsi makanan yang lebih bertanggung jawab dan sadar gizi.')
+add_bullet('Membangun ekosistem digital yang mendukung aksi iklim dan keberlanjutan.')
+
+# ============================ 6. KESIMPULAN ============================
+doc.add_page_break()
+add_heading_custom('BAB VI: KESIMPULAN', level=1)
+
+doc.add_paragraph(
+    'EcoLife Hub telah berhasil dikembangkan sebagai platform sustainable living terintegrasi yang menggabungkan fitur '
+    'tracking nutrisi, aktivitas fisik, edukasi SDGs, dan komunitas dalam satu kesatuan yang kohesif. '
+    'Aplikasi ini dibangun menggunakan framework Laravel 11 dengan arsitektur MVC, database MySQL, dan '
+    'frontend yang menggunakan Tailwind CSS serta Alpine.js.'
+)
+doc.add_paragraph(
+    'Melalui fitur-fitur yang disediakan, EcoLife Hub memberikan solusi atas permasalahan rendahnya kesadaran masyarakat '
+    'terhadap gizi, aktivitas fisik, dan isu keberlanjutan. Platform ini memudahkan pengguna untuk memonitor asupan nutrisi '
+    'harian, mencatat aktivitas fisik, mempelajari SDGs melalui quiz interaktif dan artikel edukasi, serta berinteraksi '
+    'dengan sesama pengguna melalui forum diskusi.'
+)
+doc.add_paragraph(
+    'Pengembangan EcoLife Hub mengacu pada beberapa Sustainable Development Goals (SDGs), terutama SDG 2 (Zero Hunger), '
+    'SDG 3 (Good Health and Well-being), SDG 4 (Quality Education), SDG 12 (Responsible Consumption and Production), '
+    'dan SDG 13 (Climate Action). Dengan demikian, aplikasi ini tidak hanya bermanfaat bagi pengguna secara individu, '
+    'tetapi juga berkontribusi pada pencapaian tujuan pembangunan berkelanjutan secara global.'
+)
+doc.add_paragraph(
+    'Untuk pengembangan selanjutnya, beberapa potensi yang dapat dieksplorasi meliputi: integrasi dengan perangkat '
+    'wearable untuk automatic activity tracking, pengembangan fitur rekomendasi makanan personal berbasis AI, '
+    'penambahan fitur social challenge antar pengguna untuk meningkatkan engagement, serta pengembangan aplikasi mobile '
+    'native untuk jangkauan yang lebih luas. Dengan fondasi arsitektur yang solid dan dokumentasi yang lengkap, '
+    'EcoLife Hub memiliki potensi besar untuk terus berkembang dan memberikan dampak positif yang lebih luas bagi '
+    'masyarakat dan lingkungan.'
+)
+
+doc.add_paragraph()
 
 # ============================ TABLE OF CONTENTS ============================
 add_heading_custom('DAFTAR ISI', level=1)
@@ -313,8 +572,11 @@ add_section_heading('C3. Manage Users')
 doc.add_paragraph(
     'Manajemen user platform:'
 )
-add_bullet('Index: Tabel semua user dengan fitur search berdasarkan nama atau email. Menampilkan role (Admin/User) dan tanggal join.')
-add_bullet('Show: Detail user lengkap meliputi avatar, nama, email, BMI, berat, tinggi, kota, riwayat daily history, dan daftar aktivitas.')
+add_bullet('Index: Tabel semua user dengan fitur search, 4 stat cards summary (total/active/blocked/admins), kolom status (badge Active hijau atau Blocked merah dengan dot indikator), avatar monogram dengan warna dinamis, dan tombol aksi view/block/unblock.')
+add_bullet('Show: Detail user lengkap meliputi avatar besar dengan status indicator (hijau/merah), nama, email, badge role, status block, banner alasan block, 4 stat cards BMI/berat/tinggi/kota dengan top border dekoratif, riwayat daily history (timeline dengan dot connector), dan daftar aktivitas (timeline).')
+add_bullet('Block User: Admin dapat mem-block user non-admin dengan mengklik tombol block dan memasukkan alasan opsional. Tombol block memunculkan popup form input alasan. User admin tidak bisa di-block.')
+add_bullet('Unblock User: Admin dapat meng-unblock user yang sudah di-block dengan satu klik tombol hijau.')
+add_bullet('Login Restriction: User yang sedang di-block tidak dapat login ke platform. Saat mencoba login, akan muncul pesan error "Your account has been blocked." dan session langsung dihapus.')
 
 # C4
 add_section_heading('C4. Manage Comments')
