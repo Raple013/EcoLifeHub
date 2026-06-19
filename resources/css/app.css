@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-border: #e0dcd4;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+        background-color: #1a3c2a;
+        color: #f5f2ec;
+    }
+
+    h1, h2, h3, h4 {
+        font-family: 'Playfair Display', Georgia, serif;
+        letter-spacing: -0.01em;
+    }
+}
+
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+}
+
+@layer components {
+    .card {
+        @apply bg-white border border-sage-100/70 shadow-card;
+        border-radius: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+        box-shadow: 0 4px 20px rgba(26, 60, 42, 0.10);
+        border-color: #b3c9b4;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-6 py-3 bg-forest-600 text-cream
+               font-medium text-sm tracking-wide hover:bg-forest-700
+               focus:outline-none focus:ring-2 focus:ring-forest-400 focus:ring-offset-1
+               transition-all duration-200;
+        border-radius: 0.75rem;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center px-6 py-3 border-2 border-forest-600/15 text-forest-700
+               font-medium text-sm tracking-wide
+               hover:bg-forest-50 hover:border-forest-600/30
+               focus:outline-none focus:ring-2 focus:ring-forest-400 focus:ring-offset-1
+               transition-all duration-200;
+        border-radius: 0.75rem;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center px-3 py-2 text-muted font-medium text-sm
+               hover:text-ink transition-colors duration-200;
+    }
+
+    .input-field {
+        @apply w-full px-4 py-3 border border-sage-200 bg-white text-ink
+               placeholder:text-muted/50 text-sm
+               focus:outline-none focus:border-forest-500 focus:ring-2 focus:ring-forest-500/15
+               transition-all duration-200;
+        border-radius: 0.75rem;
+    }
+
+    .nav-link {
+        @apply text-muted hover:text-ink font-medium text-sm tracking-wide
+               transition-colors duration-200 relative;
+    }
+
+    .nav-link-active {
+        @apply text-ink;
+    }
+
+    .nav-link-active::after {
+        content: '';
+        @apply absolute -bottom-1 left-0 right-0 h-[2px] bg-forest-600;
+        border-radius: 1px;
+    }
+
+    .section-heading {
+        @apply font-serif text-2xl md:text-3xl text-ink tracking-tight;
+    }
+
+    .badge {
+        @apply inline-flex items-center px-3 py-1 text-xs font-medium tracking-wide;
+        border-radius: 9999px;
+    }
+
+    .badge-forest {
+        @apply badge bg-forest-100 text-forest-700;
+    }
+
+    .badge-gold {
+        @apply badge bg-gold-100 text-gold-700;
+    }
+
+    .progress-bar {
+        @apply h-2 bg-sage-100 overflow-hidden;
+        border-radius: 9999px;
+    }
+
+    .progress-fill {
+        @apply h-full bg-forest-500 transition-all duration-500 ease-out;
+        border-radius: 9999px;
+    }
+
+    .divider {
+        @apply border-t border-sage-100;
+    }
+
+    .stat-value {
+        @apply font-serif text-3xl md:text-4xl text-ink leading-none;
+    }
+
+    .stat-label {
+        @apply text-xs text-muted font-medium uppercase tracking-wider;
+    }
+}
+
+@layer utilities {
+    .bg-warm {
+        background-color: #f5f2ec;
+    }
+}
