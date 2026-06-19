@@ -21,13 +21,27 @@
                             <p class="text-forest-300 text-xs font-medium uppercase tracking-[0.2em] mb-4">{{ __('Welcome') }}</p>
                             <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-cream leading-[1.15]">
                                 {{ __('Good') }}
+                                <span id="greeting-time">
                                 @php $h = now()->hour; @endphp
-                                @if ($h < 12) {{ __('Morning') }}
-                                @elseif ($h < 17) {{ __('Afternoon') }}
-                                @else {{ __('Evening') }}
+                                @if ($h >= 5 && $h < 12) {{ __('Morning') }}
+                                @elseif ($h >= 12 && $h < 17) {{ __('Afternoon') }}
+                                @elseif ($h >= 17 && $h < 21) {{ __('Evening') }}
+                                @else {{ __('Night') }}
                                 @endif
+                                </span>
                                 , {{ Auth::user()->name }}
                             </h1>
+                            @push('scripts')
+                            <script>
+                                setInterval(() => {
+                                    let el = document.getElementById('greeting-time');
+                                    if (!el) return;
+                                    let h = new Date().getHours();
+                                    let greet = h >= 5 && h < 12 ? '{{ __("Morning") }}' : h >= 12 && h < 17 ? '{{ __("Afternoon") }}' : h >= 17 && h < 21 ? '{{ __("Evening") }}' : '{{ __("Night") }}';
+                                    if (el.textContent.trim() !== greet) el.textContent = greet;
+                                }, 10000);
+                            </script>
+                            @endpush
                             <p class="text-forest-200 mt-3 text-base max-w-lg leading-relaxed">
                                 {{ __('Small actions, sustainable future. Track your journey one step at a time.') }}
                             </p>
