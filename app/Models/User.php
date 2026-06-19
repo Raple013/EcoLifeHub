@@ -22,6 +22,8 @@ class User extends Authenticatable
         'city',
         'quiz_score',
         'profile_photo_path',
+        'blocked_at',
+        'blocked_reason',
     ];
 
     protected $hidden = [
@@ -35,6 +37,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'weight_kg' => 'decimal:1',
+            'blocked_at' => 'datetime',
         ];
     }
 
@@ -115,6 +118,27 @@ class User extends Authenticatable
     public function initials(): string
     {
         return strtoupper(substr($this->name, 0, 1));
+    }
+
+    public function isBlocked(): bool
+    {
+        return !is_null($this->blocked_at);
+    }
+
+    public function block(string $reason = null): void
+    {
+        $this->update([
+            'blocked_at' => now(),
+            'blocked_reason' => $reason,
+        ]);
+    }
+
+    public function unblock(): void
+    {
+        $this->update([
+            'blocked_at' => null,
+            'blocked_reason' => null,
+        ]);
     }
 
     public function bmi(): ?float

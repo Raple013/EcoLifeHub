@@ -22,8 +22,11 @@ class UserController extends Controller
 
         $users = $query->latest()->paginate(20);
         $totalUsers = User::count();
+        $activeUsers = User::whereNull('blocked_at')->count();
+        $blockedUsers = User::whereNotNull('blocked_at')->count();
+        $adminUsers = User::role('admin')->count();
 
-        return view('admin.users.index', compact('users', 'totalUsers'));
+        return view('admin.users.index', compact('users', 'totalUsers', 'activeUsers', 'blockedUsers', 'adminUsers'));
     }
 
     public function show(User $user)
@@ -32,5 +35,24 @@ class UserController extends Controller
         $histories = $user->dailyHistories()->latest()->take(10)->get();
 
         return view('admin.users.show', compact('user', 'activities', 'histories'));
+    }
+
+    public function block(Request $request, User $user)
+    {
+        if ($user->hasRole('admin')) {
+            return back()->with('error', __('Cannot block an admin user.'));
+        }
+
+        $reason = $request->input('reason');
+        $user->block($reason);
+
+        return back()->with('success', __('User has been blocked.'));
+    }
+
+    public function unblock(Request $request, User $user)
+    {
+        $user->unblock();
+
+        return back()->with('success', __('User has been unblocked.'));
     }
 }
