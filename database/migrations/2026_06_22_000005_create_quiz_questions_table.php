@@ -13,6 +13,8 @@ return new class extends Migration
             $table->string('question');
             $table->json('options');
             $table->string('answer');
+            $table->string('topic')->default('sdg');
+            $table->text('explanation')->nullable();
             $table->timestamps();
         });
     }

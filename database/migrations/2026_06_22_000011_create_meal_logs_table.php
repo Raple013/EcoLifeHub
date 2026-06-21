@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('nutrition_logs', function (Blueprint $table) {
+        Schema::create('meal_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('food_name');
@@ -25,14 +22,13 @@ return new class extends Migration
             $table->string('source')->default('manual_input');
             $table->dateTime('logged_at');
             $table->timestamps();
+
+            $table->index('logged_at');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('nutrition_logs');
+        Schema::dropIfExists('meal_logs');
     }
 };

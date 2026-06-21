@@ -22,10 +22,11 @@
                     <thead>
                         <tr class="bg-sage-50/80 text-muted text-left">
                             <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Question') }}</th>
-                            <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Options') }}</th>
-                            <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Correct Answer') }}</th>
-                            <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Date') }}</th>
-                            <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Actions') }}</th>
+                                <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Options') }}</th>
+                                <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Correct Answer') }}</th>
+                                <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Explanation') }}</th>
+                                <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Date') }}</th>
+                                <th class="px-6 py-3.5 font-semibold text-xs uppercase tracking-wider">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-sage-100">
@@ -44,12 +45,19 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700">
-                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        {{ $q->answer }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-muted text-xs">{{ $q->created_at->diffForHumans() }}</td>
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            {{ $q->answer }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-xs">
+                                        @if ($q->explanation)
+                                            <p class="text-xs text-muted truncate">{{ $q->explanation }}</p>
+                                        @else
+                                            <span class="text-xs text-muted/50">{{ __('None') }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 text-muted text-xs">{{ $q->created_at->diffForHumans() }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-1.5">
                                         <a href="{{ route('admin.quiz-questions.edit', $q) }}"
@@ -69,7 +77,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-12 text-center text-muted text-sm">{{ __('No quiz questions yet.') }}</td>
+                                <td colspan="6" class="px-6 py-12 text-center text-muted text-sm">{{ __('No quiz questions yet.') }}</td>
                             </tr>
                         @endforelse
                     </tbody>

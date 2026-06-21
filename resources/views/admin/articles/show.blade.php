@@ -14,7 +14,7 @@
             @if ($article->image_url)
                 <img src="{{ Storage::url($article->image_url) }}" class="w-full h-72 object-cover">
             @endif
-            <div class="p-8 space-y-6">
+            <div class="p-4 md:p-6 lg:p-8 space-y-6">
                 <div class="flex items-start justify-between gap-4">
                     <div>
                         <h1 class="font-serif text-3xl text-ink tracking-tight">{{ $article->title }}</h1>

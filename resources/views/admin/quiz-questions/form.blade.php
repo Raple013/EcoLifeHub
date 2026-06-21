@@ -16,7 +16,7 @@
             @csrf
             @if ($question) @method('PUT') @endif
 
-            <div class="card p-6 space-y-5">
+            <div class="card p-4 md:p-6 space-y-5">
                 <div>
                     <label for="question" class="input-label">{{ __('Question') }}</label>
                     <textarea name="question" id="question" rows="3" class="input-field" required
@@ -53,6 +53,14 @@
                 </div>
 
                 <div>
+                    <label for="explanation" class="input-label">{{ __('Explanation') }}</label>
+                    <textarea name="explanation" id="explanation" rows="2" class="input-field"
+                              maxlength="1000">{{ old('explanation', $question?->explanation) }}</textarea>
+                    <p class="text-xs text-muted/60 mt-1">{{ __('Optional explanation shown after answering.') }}</p>
+                    <x-input-error :messages="$errors->get('explanation')" />
+                </div>
+
+                <div>
                     <label for="answer" class="input-label">{{ __('Correct Answer') }}</label>
                     <select name="answer" id="answer" class="input-field" required>
                         <option value="">{{ __('Select correct answer') }}</option>
@@ -68,10 +76,10 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button type="submit" class="btn-primary px-8 py-3">
+                <button type="submit" class="btn-primary px-4 md:px-8 py-3 w-full md:w-auto justify-center">
                     {{ $question ? __('Update Question') : __('Create Question') }}
                 </button>
-                <a href="{{ route('admin.quiz-questions.index') }}" class="px-6 py-3 text-muted hover:text-ink text-sm font-medium transition-colors">
+                <a href="{{ route('admin.quiz-questions.index') }}" class="px-4 md:px-6 py-3 text-muted hover:text-ink text-sm font-medium transition-colors">
                     {{ __('Cancel') }}
                 </a>
             </div>

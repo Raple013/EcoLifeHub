@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DailyHistory;
+use App\Models\DailyLog;
 use App\Models\ActivityLog;
-use App\Models\NutritionLog;
+use App\Models\MealLog;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
     public function index()
     {
-        $histories = DailyHistory::where('user_id', auth()->id())
+        $histories = DailyLog::where('user_id', auth()->id())
             ->latest('history_date')
             ->get();
 
@@ -20,7 +20,7 @@ class HistoryController extends Controller
             ->get()
             ->groupBy(fn($a) => $a->activity_date->toDateString());
 
-        $nutritionByDate = NutritionLog::where('user_id', auth()->id())
+        $nutritionByDate = MealLog::where('user_id', auth()->id())
             ->latest('logged_at')
             ->get()
             ->groupBy(fn($l) => $l->logged_at->toDateString());

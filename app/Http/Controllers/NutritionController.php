@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NutritionLog;
+use App\Models\MealLog;
 use App\Services\GeminiService;
 use App\Services\OpenFoodFactsService;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class NutritionController extends Controller
 
     public function index()
     {
-        $logs = NutritionLog::where('user_id', auth()->id())
+        $logs = MealLog::where('user_id', auth()->id())
             ->whereDate('logged_at', now()->toDateString())
             ->orderBy('logged_at', 'desc')
             ->get();
@@ -91,7 +91,7 @@ class NutritionController extends Controller
             'source' => 'nullable|string|in:ai_vision,ai_estimated,manual_search,manual_input',
         ]);
 
-        NutritionLog::create([
+        MealLog::create([
             'user_id' => auth()->id(),
             'food_name' => $data['food_name'],
             'calories' => $data['calories'],
@@ -152,7 +152,7 @@ class NutritionController extends Controller
             'meal_type' => 'required|in:snack,makanan_berat,minuman',
         ]);
 
-        NutritionLog::create([
+        MealLog::create([
             'user_id' => auth()->id(),
             'food_name' => $data['food_name'],
             'calories' => $data['calories'],
@@ -170,7 +170,7 @@ class NutritionController extends Controller
 
     public function history(Request $request)
     {
-        $query = NutritionLog::where('user_id', auth()->id());
+        $query = MealLog::where('user_id', auth()->id());
 
         if ($request->filled('date')) {
             $query->whereDate('logged_at', $request->date);
@@ -195,17 +195,17 @@ class NutritionController extends Controller
         return view('nutrition.history', compact('logs', 'totals'));
     }
 
-    public function destroy(NutritionLog $nutritionLog)
+    public function destroy(MealLog $mealLog)
     {
-        if ($nutritionLog->user_id !== auth()->id()) {
+        if ($mealLog->user_id !== auth()->id()) {
             abort(403);
         }
 
-        if ($nutritionLog->image_url) {
-            Storage::disk('public')->delete($nutritionLog->image_url);
+        if ($mealLog->image_url) {
+            Storage::disk('public')->delete($mealLog->image_url);
         }
 
-        $nutritionLog->delete();
+        $mealLog->delete();
 
         return redirect()->route('nutrition.index')->with('success', __('Food entry deleted.'));
     }

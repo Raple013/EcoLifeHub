@@ -8,7 +8,9 @@ class BodyDataController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->weight_kg && auth()->user()->height_cm) {
+        $user = auth()->user();
+
+        if ($user->weight_kg && $user->height_cm) {
             return redirect()->route('dashboard');
         }
 

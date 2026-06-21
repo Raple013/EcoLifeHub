@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -10,10 +11,15 @@ class NutritionTest extends TestCase
 {
     use RefreshDatabase;
 
+    private function createUser(): User
+    {
+        $role = Role::create(['nama_role' => 'user']);
+        return User::factory()->create(['id_role' => $role->id_role]);
+    }
+
     public function test_user_can_log_food_manually()
     {
-        $user = User::factory()->create();
-        $user->assignRole('user');
+        $user = $this->createUser();
 
         $response = $this->actingAs($user)->post(route('nutrition.manual'), [
             'food_name' => 'Nasi Goreng',
@@ -27,7 +33,7 @@ class NutritionTest extends TestCase
 
         $response->assertRedirect(route('nutrition.history'));
 
-        $this->assertDatabaseHas('nutrition_logs', [
+        $this->assertDatabaseHas('meal_logs', [
             'user_id' => $user->id,
             'food_name' => 'Nasi Goreng',
             'calories' => 500,
@@ -36,8 +42,7 @@ class NutritionTest extends TestCase
 
     public function test_nutrition_history_page_is_accessible()
     {
-        $user = User::factory()->create();
-        $user->assignRole('user');
+        $user = $this->createUser();
 
         $response = $this->actingAs($user)->get(route('nutrition.history'));
 
@@ -46,8 +51,7 @@ class NutritionTest extends TestCase
 
     public function test_nutrition_index_page_shows_summary()
     {
-        $user = User::factory()->create();
-        $user->assignRole('user');
+        $user = $this->createUser();
 
         $response = $this->actingAs($user)->get(route('nutrition.index'));
 

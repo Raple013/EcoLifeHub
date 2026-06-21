@@ -7,7 +7,6 @@ use App\Models\Article;
 use App\Models\User;
 use App\Models\ActivityLog;
 use App\Models\Comment;
-use App\Models\DailyHistory;
 use App\Models\DiscussionThread;
 use App\Models\QuizQuestion;
 

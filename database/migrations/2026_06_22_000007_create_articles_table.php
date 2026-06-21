@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('category');
+            $table->string('language', 2)->default('en');
             $table->text('excerpt')->nullable();
             $table->longText('content');
             $table->string('image_url')->nullable();

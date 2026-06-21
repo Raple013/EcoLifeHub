@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -12,8 +13,8 @@ class DashboardTest extends TestCase
 
     public function test_dashboard_page_is_accessible()
     {
-        $user = User::factory()->create();
-        $user->assignRole('user');
+        $role = Role::create(['nama_role' => 'user']);
+        $user = User::factory()->create(['id_role' => $role->id_role]);
 
         $response = $this->actingAs($user)->get(route('dashboard'));
 

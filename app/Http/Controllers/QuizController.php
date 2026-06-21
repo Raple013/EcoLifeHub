@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DailyHistory;
+use App\Models\DailyLog;
+use App\Models\QuizAttempt;
 use App\Models\QuizQuestion;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,7 @@ class QuizController extends Controller
                 $correct += is_array($perQuestion) ? $perQuestion[$index] : $perQuestion;
             }
             $results[] = [
+                'question_id' => $question['id'],
                 'question' => $question['question'],
                 'options' => $question['options'],
                 'correct_answer' => $question['answer'],
@@ -60,11 +62,21 @@ class QuizController extends Controller
 
         $score = $correct;
 
-        auth()->user()->update(['quiz_score' => $score]);
+        $user = auth()->user();
+        $user->update(['quiz_score' => $score]);
 
-        DailyHistory::updateOrCreate(
+        QuizAttempt::create([
+            'user_id' => $user->id,
+            'score' => $score,
+            'total_questions' => $count,
+            'topic' => $questions[0]['topic'] ?? null,
+            'answers' => $results,
+            'completed_at' => now(),
+        ]);
+
+        DailyLog::updateOrCreate(
             [
-                'user_id' => auth()->id(),
+                'user_id' => $user->id,
                 'history_date' => now()->toDateString(),
             ],
             ['quiz_score' => $score]

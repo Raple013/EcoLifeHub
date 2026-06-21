@@ -6,24 +6,26 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'profile_photo',
         'weight_kg',
         'height_cm',
+        'gender',
+        'age',
+        'date_of_birth',
         'city',
+        'id_role',
+        'status',
         'quiz_score',
-        'profile_photo_path',
-        'blocked_at',
-        'blocked_reason',
     ];
 
     protected $hidden = [
@@ -37,8 +39,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'weight_kg' => 'decimal:1',
-            'blocked_at' => 'datetime',
+            'date_of_birth' => 'date',
         ];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'id_role', 'id_role');
     }
 
     public function activityLogs()
@@ -46,9 +53,9 @@ class User extends Authenticatable
         return $this->hasMany(ActivityLog::class);
     }
 
-    public function dailyHistories()
+    public function dailyLogs()
     {
-        return $this->hasMany(DailyHistory::class);
+        return $this->hasMany(DailyLog::class);
     }
 
     public function comments()
@@ -66,9 +73,14 @@ class User extends Authenticatable
         return $this->hasMany(DiscussionReply::class);
     }
 
-    public function nutritionLogs()
+    public function mealLogs()
     {
-        return $this->hasMany(NutritionLog::class);
+        return $this->hasMany(MealLog::class);
+    }
+
+    public function quizAttempts()
+    {
+        return $this->hasMany(QuizAttempt::class);
     }
 
     public function achievements()
@@ -89,7 +101,7 @@ class User extends Authenticatable
             5 => $totalMinutes >= 500 && $quizScore >= 90,
         ];
 
-        $earned = \App\Models\Achievement::whereIn('level', array_keys(array_filter($criteria)))
+        $earned = Achievement::whereIn('level', array_keys(array_filter($criteria)))
             ->pluck('id')
             ->toArray();
 
@@ -98,21 +110,21 @@ class User extends Authenticatable
         );
     }
 
-    public function highestAchievement(): ?\App\Models\Achievement
+    public function highestAchievement(): ?Achievement
     {
         return $this->achievements()->orderBy('level', 'desc')->first();
     }
 
     public function photoUrl(): string
     {
-        return $this->profile_photo_path
-            ? asset('storage/' . $this->profile_photo_path)
+        return $this->profile_photo
+            ? asset('storage/' . $this->profile_photo)
             : '';
     }
 
     public function hasPhoto(): bool
     {
-        return !is_null($this->profile_photo_path);
+        return !is_null($this->profile_photo);
     }
 
     public function initials(): string
@@ -122,23 +134,26 @@ class User extends Authenticatable
 
     public function isBlocked(): bool
     {
-        return !is_null($this->blocked_at);
+        return $this->status === 'nonaktif';
     }
 
     public function block(string $reason = null): void
     {
         $this->update([
-            'blocked_at' => now(),
-            'blocked_reason' => $reason,
+            'status' => 'nonaktif',
         ]);
     }
 
     public function unblock(): void
     {
         $this->update([
-            'blocked_at' => null,
-            'blocked_reason' => null,
+            'status' => 'aktif',
         ]);
+    }
+
+    public function hasRole(string $namaRole): bool
+    {
+        return $this->role?->nama_role === $namaRole;
     }
 
     public function bmi(): ?float
@@ -173,19 +188,6 @@ class User extends Authenticatable
             $bmi < 23 => 'bg-green-100 text-green-700 border-green-200',
             $bmi < 25 => 'bg-yellow-100 text-yellow-700 border-yellow-200',
             $bmi >= 25 => 'bg-red-100 text-red-700 border-red-200',
-        };
-    }
-
-    public function bmiEmoji(): ?string
-    {
-        $bmi = $this->bmi();
-        if ($bmi === null) return null;
-
-        return match (true) {
-            $bmi < 18.5 => '&#128564;',
-            $bmi < 23 => '&#128170;',
-            $bmi < 25 => '&#9888;',
-            $bmi >= 25 => '&#128162;',
         };
     }
 }

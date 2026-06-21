@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\Article;
-use App\Models\NutritionLog;
+use App\Models\MealLog;
 
 class DashboardController extends Controller
 {
@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $activityMinutes = $todayActivity->sum('duration_minutes');
         $activityCalories = $todayActivity->sum('calories_burned');
 
-        $todayNutrition = NutritionLog::where('user_id', $user->id)
+        $todayNutrition = MealLog::where('user_id', $user->id)
             ->whereDate('logged_at', now()->toDateString())
             ->get();
         $nutritionCalories = $todayNutrition->sum('calories');

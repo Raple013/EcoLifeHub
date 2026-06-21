@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/nutrition/search', [\App\Http\Controllers\NutritionController::class, 'search'])->name('nutrition.search');
     Route::post('/nutrition/manual', [\App\Http\Controllers\NutritionController::class, 'manual'])->name('nutrition.manual');
     Route::get('/nutrition/history', [\App\Http\Controllers\NutritionController::class, 'history'])->name('nutrition.history');
-    Route::delete('/nutrition/{nutritionLog}', [\App\Http\Controllers\NutritionController::class, 'destroy'])->name('nutrition.destroy');
+    Route::delete('/nutrition/{mealLog}', [\App\Http\Controllers\NutritionController::class, 'destroy'])->name('nutrition.destroy');
 });
 
 // daily report

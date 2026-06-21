@@ -6,19 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_role');
+
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            $table->string('profile_photo')->nullable();
+            $table->decimal('weight_kg', 5, 1)->nullable();
+            $table->integer('height_cm')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('age')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('city')->nullable();
+            $table->string('status', 10)->default('aktif');
+            $table->integer('quiz_score')->default(0);
+
             $table->timestamps();
+
+            $table->foreign('id_role')->references('id_role')->on('role')->cascadeOnDelete();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -37,13 +49,10 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };

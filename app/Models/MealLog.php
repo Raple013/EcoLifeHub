@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NutritionLog extends Model
+class MealLog extends Model
 {
+    protected $table = 'meal_logs';
+
     protected $fillable = [
         'user_id',
         'food_name',

@@ -168,10 +168,9 @@
                                                    title="{{ __('Block') }}">
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636"/></svg>
                                                 </button>
-                                                <form id="bf-{{ $user->id }}" action="{{ route('admin.users.block', $user) }}" method="POST" class="hidden absolute mt-1 right-0 bg-white border border-sage-200 rounded-xl p-3.5 shadow-lg z-10 min-w-[240px]">
+                                                <form id="bf-{{ $user->id }}" action="{{ route('admin.users.block', $user) }}" method="POST" class="hidden absolute mt-1 right-0 bg-white border border-sage-200 rounded-xl p-3.5 shadow-lg z-10 min-w-[200px]">
                                                     @csrf
-                                                    <p class="text-xs font-medium text-sage-500 mb-2">{{ __('Reason for blocking') }}</p>
-                                                    <input type="text" name="reason" placeholder="{{ __('Optional...') }}" class="w-full text-sm border border-sage-200 rounded-lg px-3 py-1.5 mb-2.5 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 placeholder:text-sage-300">
+                                                    <p class="text-xs text-sage-500 mb-2.5">{{ __('Block this user?') }}</p>
                                                     <div class="flex gap-2">
                                                         <button type="submit" class="flex-1 px-3 py-1.5 bg-red-500 text-white rounded-lg text-xs font-semibold hover:bg-red-600 transition-colors">{{ __('Block') }}</button>
                                                         <button type="button" onclick="this.closest('form').classList.add('hidden')" class="px-3 py-1.5 text-sage-500 hover:text-ink text-xs font-medium transition-colors">{{ __('Cancel') }}</button>

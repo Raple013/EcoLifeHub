@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DailyHistory extends Model
+class DailyLog extends Model
 {
+    protected $table = 'daily_logs';
+
     protected function casts(): array
     {
         return [
@@ -14,16 +16,10 @@ class DailyHistory extends Model
     }
 
     protected $fillable = [
-
         'user_id',
-
         'history_date',
-
         'quiz_score',
-
         'activity_minutes',
-
-        'activity_calories'
-
+        'activity_calories',
     ];
 }

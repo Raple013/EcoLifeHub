@@ -83,13 +83,12 @@
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636"/></svg>
                                         {{ __('Block User') }}
                                     </button>
-                                    <div x-show="open" @click.outside="open = false" x-cloak class="absolute mt-2 right-0 md:right-auto bg-white border border-sage-200 rounded-xl p-4 shadow-xl z-10 min-w-[260px]">
+                                    <div x-show="open" @click.outside="open = false" x-cloak class="absolute mt-2 right-0 md:right-auto bg-white border border-sage-200 rounded-xl p-4 shadow-xl z-10 min-w-[200px]">
                                         <form action="{{ route('admin.users.block', $user) }}" method="POST">
                                             @csrf
-                                            <p class="text-xs font-semibold text-sage-500 mb-2 uppercase tracking-wide">{{ __('Reason') }}</p>
-                                            <input type="text" name="reason" placeholder="{{ __('Optional...') }}" class="w-full text-sm border border-sage-200 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 placeholder:text-sage-300">
+                                            <p class="text-xs text-sage-500 mb-3">{{ __('Are you sure you want to block this user?') }}</p>
                                             <div class="flex gap-2">
-                                                <button type="submit" class="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg text-xs font-semibold hover:bg-red-600 transition-colors">{{ __('Confirm Block') }}</button>
+                                                <button type="submit" class="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg text-xs font-semibold hover:bg-red-600 transition-colors">{{ __('Block') }}</button>
                                                 <button type="button" @click="open = false" class="px-4 py-2 text-sage-500 hover:text-ink text-xs font-medium transition-colors rounded-lg hover:bg-sage-50">{{ __('Cancel') }}</button>
                                             </div>
                                         </form>
@@ -99,16 +98,7 @@
                         </div>
                     </div>
 
-                    {{-- Block reason banner --}}
-                    @if ($user->isBlocked() && $user->blocked_reason)
-                        <div class="mt-5 p-3.5 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
-                            <svg class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            <div>
-                                <p class="text-xs font-semibold text-red-700 uppercase tracking-wide">{{ __('Block Reason') }}</p>
-                                <p class="text-sm text-red-600 mt-0.5">"{{ $user->blocked_reason }}"</p>
-                            </div>
-                        </div>
-                    @endif
+
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
-use App\Models\DailyHistory;
+use App\Models\DailyLog;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -82,15 +82,17 @@ class ActivityController extends Controller
             'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
+        $weightKg = $user->weight_kg;
+
         $calories = null;
-        if ($user->weight_kg && $validated['pace_intensity']) {
+        if ($weightKg && $validated['pace_intensity']) {
             $met = ActivityLog::getMetValue(
                 $validated['activity_type'],
                 $validated['pace_intensity']
             );
             $calories = ActivityLog::calculateCalories(
                 $met,
-                $user->weight_kg,
+                $weightKg,
                 $validated['duration_minutes']
             );
         }
@@ -102,7 +104,7 @@ class ActivityController extends Controller
             'duration_minutes' => $validated['duration_minutes'],
             'distance_km' => $validated['distance_km'] ?? null,
             'calories_burned' => $calories,
-            'weight_kg' => $user->weight_kg,
+            'weight_kg' => $weightKg,
             'activity_date' => now()->toDateString(),
             'notes' => $validated['notes'],
         ]);
@@ -111,7 +113,7 @@ class ActivityController extends Controller
             ->where('activity_date', now()->toDateString())
             ->get();
 
-        DailyHistory::updateOrCreate(
+        DailyLog::updateOrCreate(
             [
                 'user_id' => $user->id,
                 'history_date' => now()->toDateString(),
@@ -137,7 +139,7 @@ class ActivityController extends Controller
             ->where('activity_date', now()->toDateString())
             ->get();
 
-        DailyHistory::updateOrCreate(
+        DailyLog::updateOrCreate(
             [
                 'user_id' => auth()->id(),
                 'history_date' => now()->toDateString(),

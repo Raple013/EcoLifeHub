@@ -27,6 +27,7 @@ class QuizQuestionController extends Controller
             'options' => 'required|array|min:2|max:6',
             'options.*' => 'required|string|max:255',
             'answer' => 'required|string|max:255',
+            'explanation' => 'nullable|string|max:1000',
         ]);
 
         $data['options'] = array_values($data['options']);
@@ -49,6 +50,7 @@ class QuizQuestionController extends Controller
             'options' => 'required|array|min:2|max:6',
             'options.*' => 'required|string|max:255',
             'answer' => 'required|string|max:255',
+            'explanation' => 'nullable|string|max:1000',
         ]);
 
         $data['options'] = array_values($data['options']);

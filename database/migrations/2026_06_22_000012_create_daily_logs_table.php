@@ -8,20 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('activity_logs', function (Blueprint $table) {
+        Schema::create('daily_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('activity_type');
-            $table->integer('duration_minutes');
-            $table->integer('calories_burned')->nullable();
-            $table->date('activity_date');
-            $table->text('notes')->nullable();
+            $table->date('history_date');
+            $table->integer('quiz_score')->default(0);
+            $table->integer('activity_minutes')->nullable();
+            $table->integer('activity_calories')->nullable();
             $table->timestamps();
+
+            $table->index('history_date');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('activity_logs');
+        Schema::dropIfExists('daily_logs');
     }
 };

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NutritionLog;
+use App\Models\MealLog;
 use App\Models\ActivityLog;
-use App\Models\DailyHistory;
+use App\Models\DailyLog;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -13,7 +13,7 @@ class ReportController extends Controller
     {
         $date = $request->input('date', now()->toDateString());
 
-        $nutritionLogs = NutritionLog::where('user_id', auth()->id())
+        $nutritionLogs = MealLog::where('user_id', auth()->id())
             ->whereDate('logged_at', $date)
             ->orderBy('logged_at', 'asc')
             ->get();
@@ -23,7 +23,7 @@ class ReportController extends Controller
             ->orderBy('activity_date', 'asc')
             ->get();
 
-        $dailyHistory = DailyHistory::where('user_id', auth()->id())
+        $dailyHistory = DailyLog::where('user_id', auth()->id())
             ->whereDate('history_date', $date)
             ->first();
 

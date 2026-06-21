@@ -32,7 +32,7 @@
             @csrf
             @if ($article) @method('PUT') @endif
 
-            <div class="card p-6 space-y-5">
+            <div class="card p-4 md:p-6 space-y-5">
                 <div class="grid md:grid-cols-2 gap-5">
                     <div class="md:col-span-2">
                         <label for="title" class="input-label">{{ __('Title') }}</label>
@@ -118,7 +118,7 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button type="submit" class="btn-primary px-8 py-3">
+                <button type="submit" class="btn-primary px-4 md:px-8 py-3 w-full md:w-auto justify-center">
                     {{ $article ? __('Update Article') : __('Create Article') }}
                 </button>
                 <a href="{{ route('admin.articles.index') }}" class="px-6 py-3 text-muted hover:text-ink text-sm font-medium transition-colors">

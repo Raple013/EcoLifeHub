@@ -40,12 +40,12 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        if ($user->profile_photo_path) {
-            Storage::disk('public')->delete($user->profile_photo_path);
+        if ($user->profile_photo) {
+            Storage::disk('public')->delete($user->profile_photo);
         }
 
         $path = $request->file('photo')->store('profile-photos', 'public');
-        $user->update(['profile_photo_path' => $path]);
+        $user->update(['profile_photo' => $path]);
 
         return Redirect::route('profile.edit')->with('status', 'photo-updated');
     }
@@ -54,9 +54,9 @@ class ProfileController extends Controller
     {
         $user = $request->user();
 
-        if ($user->profile_photo_path) {
-            Storage::disk('public')->delete($user->profile_photo_path);
-            $user->update(['profile_photo_path' => null]);
+        if ($user->profile_photo) {
+            Storage::disk('public')->delete($user->profile_photo);
+            $user->update(['profile_photo' => null]);
         }
 
         return Redirect::route('profile.edit')->with('status', 'photo-removed');

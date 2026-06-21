@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
-use App\Models\DailyHistory;
+use App\Models\DailyLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -27,7 +27,7 @@ class DataController extends Controller
         $totalActivities = ActivityLog::whereBetween('activity_date', $dateRange)->count();
         $totalMinutes = ActivityLog::whereBetween('activity_date', $dateRange)->sum('duration_minutes');
         $totalCalories = ActivityLog::whereBetween('activity_date', $dateRange)->sum('calories_burned');
-        $totalQuiz = DailyHistory::whereBetween('history_date', $dateRange)->avg('quiz_score');
+        $totalQuiz = DailyLog::whereBetween('history_date', $dateRange)->avg('quiz_score');
 
         $topActivities = ActivityLog::whereBetween('activity_date', $dateRange)
             ->selectRaw('activity_type, count(*) as total, sum(duration_minutes) as minutes')
