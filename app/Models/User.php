@@ -190,4 +190,17 @@ class User extends Authenticatable
             $bmi >= 25 => 'bg-red-100 text-red-700 border-red-200',
         };
     }
+
+    public function bmiEmoji(): string
+    {
+        $bmi = $this->bmi();
+        if ($bmi === null) return '';
+
+        return match (true) {
+            $bmi < 18.5 => '<span class="text-blue-500">&#9679;</span>',
+            $bmi < 23 => '<span class="text-green-500">&#9679;</span>',
+            $bmi < 25 => '<span class="text-yellow-500">&#9679;</span>',
+            $bmi >= 25 => '<span class="text-red-500">&#9679;</span>',
+        };
+    }
 }

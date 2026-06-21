@@ -20,13 +20,12 @@
                         <div class="max-w-2xl">
                             <p class="text-forest-300 text-xs font-medium uppercase tracking-[0.2em] mb-4">{{ __('Welcome') }}</p>
                             <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-cream leading-[1.15]">
-                                {{ __('Good') }}
-                                <span id="greeting-time">
+                                <span id="greeting-text">
                                 @php $h = now()->hour; @endphp
-                                @if ($h >= 5 && $h < 12) {{ __('Morning') }}
-                                @elseif ($h >= 12 && $h < 17) {{ __('Afternoon') }}
-                                @elseif ($h >= 17 && $h < 21) {{ __('Evening') }}
-                                @else {{ __('Night') }}
+                                @if ($h >= 5 && $h < 12) {{ __('Good Morning') }}
+                                @elseif ($h >= 12 && $h < 17) {{ __('Good Afternoon') }}
+                                @elseif ($h >= 17 && $h < 21) {{ __('Good Evening') }}
+                                @else {{ __('Good Night') }}
                                 @endif
                                 </span>
                                 , {{ Auth::user()->name }}
@@ -34,10 +33,10 @@
                             @push('scripts')
                             <script>
                                 setInterval(() => {
-                                    let el = document.getElementById('greeting-time');
+                                    let el = document.getElementById('greeting-text');
                                     if (!el) return;
                                     let h = new Date().getHours();
-                                    let greet = h >= 5 && h < 12 ? '{{ __("Morning") }}' : h >= 12 && h < 17 ? '{{ __("Afternoon") }}' : h >= 17 && h < 21 ? '{{ __("Evening") }}' : '{{ __("Night") }}';
+                                    let greet = h >= 5 && h < 12 ? '{{ __("Good Morning") }}' : h >= 12 && h < 17 ? '{{ __("Good Afternoon") }}' : h >= 17 && h < 21 ? '{{ __("Good Evening") }}' : '{{ __("Good Night") }}';
                                     if (el.textContent.trim() !== greet) el.textContent = greet;
                                 }, 10000);
                             </script>

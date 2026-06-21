@@ -332,5 +332,9 @@
     "ai_estimated": "Estimasi AI",
     "Makanan Berat": "Makanan Berat",
     "Minuman": "Minuman",
-    "Snack": "Cemilan"
+    "Snack": "Cemilan",
+    "Good Morning": "Selamat Pagi",
+    "Good Afternoon": "Selamat Siang",
+    "Good Evening": "Selamat Sore",
+    "Good Night": "Selamat Malam"
 }
